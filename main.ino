@@ -120,14 +120,6 @@ void displa(int x , int i ) { //x = digit to code , i = position of the digit
 }
 
 /*---------------------------------------------------------------------------------------------------------------- split it  -------------------------------------------------------------------------------------*/
-int spliter(int x , int score ){ // x = time 
-  int tab [4] ;
-  int both = (30 - x)*100 + score ;
-  for(int i = 3 ; i > -1 ; i--){
-      tab[i] = both % 10 ;
-      both = both / 10 ;
-  }
-}
 
 /*---------------------------------------------------------------------------------------------------------------- game_main -------------------------------------------------------------------------------------*/
 
@@ -170,6 +162,7 @@ void setup() {
 void loop() {
   unsigned long time = 0 ;
   int splited;
+  int both;
   if (sensor == true) {
     score++ ;
     gs = true ;
@@ -180,9 +173,11 @@ void loop() {
       if (sensor == true) {
         score++;
       }
-      splited = spliter(time , score);
+      
       for(int i = 0 ; i < 4 ; i++){
-        displa(splited[3-i],i);
+        both = (30-time)*100+score ;
+        displa(both % 10,i);
+        both = both /10 ;
       }
     }
     time = 0 ;
